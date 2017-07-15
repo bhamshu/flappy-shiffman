@@ -18,7 +18,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(1360, 650);
+    createCanvas(1360, 600);
     //createCanvas(displayWidth, displayHeight * 0.8);
     bird = new Bird;
     pic = floor(random(4));
