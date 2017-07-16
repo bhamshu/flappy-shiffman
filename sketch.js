@@ -3,12 +3,12 @@ var pipes = [];
 //var img;
 var pause = false;
 var frameCunt = 0;
-var speed = 4;
+var speed;
 var uptree, downtree;
 var pic;
 
 function preload() {
-    taurus = loadImage('taurus.png');
+    taurus = loadImage('torus.png');
     s1 = loadImage('s1.png');
     s2 = loadImage('s2.png');
     s3 = loadImage('s3.png');
@@ -21,6 +21,8 @@ function setup() {
     createCanvas(1360, 600);
     //createCanvas(displayWidth, displayHeight * 0.8);
     bird = new Bird;
+    slider = createSlider(0, 10, 4, 1);
+
     pic = floor(random(4));
     pipes.push(new Pipe());
     pipes.push(new Pipe());
@@ -32,6 +34,10 @@ function draw() {
     if (!pause) {
         imageMode(CORNER);
         background(bg);
+
+        speed = slider.value();
+
+
         for (var i = pipes.length - 1; i >= 0; i--) {
             pipes[i].show();
             pipes[i].update();
@@ -46,7 +52,7 @@ function draw() {
             }
         }
 
-        bird.update();
+        bird.update(speed);
         bird.show();
 
         if (frameCunt % floor(width / (4 * speed)) == 0) {
@@ -63,4 +69,8 @@ function keyPressed() {
     if (key == "p" || key == "P") {
         pause = !pause;
     }
+}
+
+function mousePressed() {
+    bird.up();
 }
