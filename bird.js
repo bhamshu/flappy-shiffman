@@ -3,7 +3,7 @@ function Bird() {
     this.x = 200;
     this.r = 24;
 
-    this.gravity = 0.6;
+    this.gravity = speed > 7 ? 0.8 : 0.6;
     this.lift = -15;
     this.velocity = 0;
 
@@ -11,19 +11,21 @@ function Bird() {
         fill(255);
         //ellipse(this.x, this.y, 2 * this.r, 2 * this.r);
         imageMode(CENTER);
-        switch (pic) {
-            case 0:
-                lol = s1;
-                break;
-            case 1:
-                lol = s2;
-                break;
-            case 2:
-                lol = s3;
-                break;
-            case 3:
-                lol = torus;
-        }
+        if (userimg) lol = userimg;
+        else
+            switch (pic) {
+                case 0:
+                    lol = s1;
+                    break;
+                case 1:
+                    lol = s2;
+                    break;
+                case 2:
+                    lol = s3;
+                    break;
+                case 3:
+                    lol = torus;
+            }
         image(lol, this.x, this.y, 2 * this.r, 2 * this.r);
     }
 
