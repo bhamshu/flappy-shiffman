@@ -8,7 +8,7 @@ var uptree, downtree;
 var pic;
 
 function preload() {
-    taurus = loadImage('torus.png');
+    torus = loadImage('torus.png');
     s1 = loadImage('s1.png');
     s2 = loadImage('s2.png');
     s3 = loadImage('s3.png');
@@ -52,7 +52,7 @@ function draw() {
             }
         }
 
-        bird.update(speed);
+        bird.update();
         bird.show();
 
         if (frameCunt % floor(width / (4 * speed)) == 0) {
