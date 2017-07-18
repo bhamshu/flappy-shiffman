@@ -1,3 +1,4 @@
+var c;
 var bird;
 var pipes = [];
 //var img;
@@ -22,8 +23,11 @@ function preload() {
 
 function setup() {
     //var c = createCanvas(1300, 580);
-    var c = createCanvas(innerWidth, innerHeight);
+    c = createCanvas(innerWidth, innerHeight);
     bird = new Bird;
+    chbox = createCheckbox();
+    chbox.position(width - 20, 53);
+    chbox.checked(true);
     slider = createSlider(0, 10, 4, 1);
     slider.position(width - 150, 50);
     pic = floor(random(4));
@@ -33,6 +37,23 @@ function setup() {
     pipes[0].x = width / 2;
 
     c.drop(gotFile);
+}
+
+window.onresize = function () {
+    if (width != innerWidth || height != innerHeight) {
+        c.size(innerWidth, innerHeight);
+
+        chbox.position(width - 20, 53);
+
+        slider.position(width - 150, 50);
+        bird.r = 24 * height / 600;
+
+        pipes.splice(0, pipes.length);
+        pipes.push(new Pipe());
+        pipes.push(new Pipe());
+        pipes[1].x = width / 2 + 1360 / 4;
+        pipes[0].x = width / 2;
+    }
 }
 
 function gotFile(file) {
@@ -51,7 +72,6 @@ function draw() {
         background(bg);
 
         speed = slider.value();
-
 
         for (var i = pipes.length - 1; i >= 0; i--) {
             pipes[i].show();
@@ -74,7 +94,8 @@ function draw() {
             pipes.push(new Pipe());
         }
 
-        tutorial();
+        if (chbox.checked()) tutorial();
+        else chbox.remove();
 
         frameCunt++;
     }
@@ -88,14 +109,19 @@ function tutorial() {
     else if (frameCunt == 400) {
         pause = true;
         text("You can pause/unpause the game by pressing p", 0, height / 2);
-    } else if (frameCunt == 800) {
+    } else if (frameCunt == 800 && msgcount) {
         pause = true;
         text("You can drag and drop your own image on this page!", 0, height / 2);
         msgcount--;
     }
     if (frameCunt < 1250 && frameCunt > 900 && frameCunt % 3 == 0)
         text("Control Speed", width - 150 - 20 * sin(map(frameCunt, 900, 1250, 0, 2 * 3.1416)), 30);
-
+    if (frameCunt > 1250 && frameCunt < 1500) {
+        text("Uncheck ", 0, height / 2);
+        text("this", frameCunt < 1400 ? map(frameCunt, 1250, 1400, 80, width - 30) : width - 30, frameCunt < 1400 ? map(frameCunt, 1250, 1400, height / 2, 80) : 80);
+        text(" check box next time if you don't want the tutorial", 109, height / 2);
+    }
+    if (frameCunt > 1500) chbox.remove();
 }
 
 function keyPressed() {
