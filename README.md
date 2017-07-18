@@ -5,9 +5,10 @@ See original [code](https://github.com/CodingTrain/Rainbow-Code/tree/master/Codi
 --------------------------------------------------------------------------------------------------------------------------
 
 **What's changed?**
-Apart from the glaringly obvious addition of a background, the trees, the shiffman and a pink donut, you can now pause the game by pressing 'p'. Also, the gap is now sufficient to let the shiffman pass every time and can appear anywhere as opposed to always including the center.
+Apart from the glaringly obvious addition of a background, the trees, the Shiffman and a pink donut, you can now pause the game by pressing 'p'. Also, the gap is now sufficient to let the Shiffman pass every time and can appear anywhere as opposed to always including the center.
+The users can now drag and drop their pictures on the sketch! A tutorial and an option to remove it have also been included. Screen size listens for window.onresize() to adapt to the window size. 
 
-I intend to allow users to upload their own images on Imgur etc and use them in the next commit.
+Although I *am* aware of some glitches here, I deem that the project has already reached a certain level of maturity and hence plan to abandon it - at least for now.  
 
 --------------------------------------------------------------------------------------------------------------------------
 
