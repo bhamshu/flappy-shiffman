@@ -24,7 +24,7 @@ function Bird() {
                     lol = s3;
                     break;
                 case 3:
-                    lol = torus;
+                    lol = toruss;
             }
         image(lol, this.x, this.y, 2 * this.r, 2 * this.r);
     }
