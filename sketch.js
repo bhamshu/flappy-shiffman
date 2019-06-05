@@ -45,7 +45,6 @@ function setup() {
     pipes.push(new Pipe());
     pipes[1].x = width / 2 + 1360 / 4;
     pipes[0].x = width / 2;
-    textSize(20);
     c.drop(gotFile);
 }
 
@@ -82,11 +81,14 @@ function draw() {
         imageMode(CORNER);
         background(bg);
         if (mobile && window.innerHeight > window.innerWidth) {
-            text("Use landscape mode (tilt the phone) for best experience.", 0, height / 2);
+            textSize(30);
+            text("Use landscape mode (tilt the phone) for best experience.", 0, 30);
         }
         if (mobile) {
-            if (frameCunt < 300)
+            if (frameCunt < 300){
+                textSize(20);
                 text("Tap anywhere to lift.", 0, height / 2);
+            }
         }
         if (!mobile) {
             speed = slider.value();
