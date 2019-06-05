@@ -80,16 +80,7 @@ function draw() {
     if (!pause) {
         imageMode(CORNER);
         background(bg);
-        if (mobile && window.innerHeight > window.innerWidth) {
-            textSize(30);
-            text("Use landscape mode (tilt the phone) for best experience.", 0, 30);
-        }
-        if (mobile) {
-            if (frameCunt < 300){
-                textSize(20);
-                text("Tap anywhere to lift.", 0, height / 2);
-            }
-        }
+  
         if (!mobile) {
             speed = slider.value();
         } else speed = 4;
@@ -111,6 +102,17 @@ function draw() {
         bird.update();
         bird.show();
 
+        if (mobile && window.innerHeight > window.innerWidth) {
+            textSize(40);
+            text("Use landscape mode (tilt the phone) for best experience.", 0, 40);
+        }
+        else if (mobile) {
+            if (frameCunt < 300){
+                textSize(20);
+                text("Tap anywhere to lift.", 0, height / 2);
+            }
+        }
+        
         if (frameCunt % floor(1360 / (4 * speed)) == 0) {
             pipes.push(new Pipe());
         }
@@ -131,7 +133,7 @@ function tutorial() {
     else if (frameCunt == 400) {
         pause = true;
         text("You can pause/unpause the game by pressing p", 0, height / 2);
-    } else if (frameCunt == 800 && msgcount) {
+    } else if (!userimg && frameCunt == 800 && msgcount) {
         pause = true;
         text("You can drag and drop your own image on this page!", 0, height / 2);
         msgcount--;
@@ -152,7 +154,7 @@ function keyPressed() {
     }
     if (key == "p" || key == "P") {
         pause = !pause;
-        if (pause && msgcount) {
+        if (!userimg && pause && msgcount) {
             alert("Did you know that you can drag and drop your own image on this page!");
             msgcount--;
         }
