@@ -6,8 +6,12 @@ var pause = false;
 var frameCunt = 0;
 var speed;
 var uptree, downtree;
-var pic;
+var number_of_pictures = 6;
+var pic_num;
+var s = [];
+var kid;
 var userimg;
+var resources_dir = "resources/"
 var msgcount = 2;
 window.mobilecheck = function () {
     var check = false;
@@ -19,18 +23,22 @@ window.mobilecheck = function () {
 var mobile = mobilecheck();
 
 function preload() {
-    toruss = loadImage('torus.png');
-    s1 = loadImage('s1.png');
-    s2 = loadImage('s2.png');
-    s3 = loadImage('s3.png');
-    uptree = loadImage('spooky_tree_upright.png');
-    downtree = loadImage('spooky_tree_inverted.png')
-    bg = loadImage('pexels-photo.jpg');
+    var i = 0
+    while (i < number_of_pictures) {
+        s.push(loadImage(resources_dir+'s'+i+'.png'))
+        i = i + 1
+    }
+    uptree = loadImage(resources_dir+'spooky_tree_upright.png');
+    downtree = loadImage(resources_dir+'spooky_tree_inverted.png')
+    bg = loadImage(resources_dir+'pexels-photo.jpg');
 
 }
 
 function setup() {
     //var c = createCanvas(1300, 580);
+    kid = "null"
+    if (getURLParams().kid)
+        kid = getURLParams().kid.toLowerCase();
     c = createCanvas(innerWidth, innerHeight);
     bird = new Bird;
     if (!mobile) {
@@ -40,7 +48,7 @@ function setup() {
         slider = createSlider(0, 10, 4, 1);
         slider.position(width - 150, 50);
     }
-    pic = floor(random(4));
+    pic_num = floor(random(number_of_pictures));
     pipes.push(new Pipe());
     pipes.push(new Pipe());
     pipes[1].x = width / 2 + 1360 / 4;
@@ -80,7 +88,7 @@ function draw() {
     if (!pause) {
         imageMode(CORNER);
         background(bg);
-  
+
         if (!mobile) {
             speed = slider.value();
         } else speed = 4;
@@ -91,7 +99,7 @@ function draw() {
 
             if (pipes[i].hits(bird)) {
                 //console.log("HIT");
-                pic = floor(random(4));
+                pic_num = floor(random(number_of_pictures));
             }
 
             if (pipes[i].offscreen()) {

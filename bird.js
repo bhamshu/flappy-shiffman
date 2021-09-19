@@ -11,22 +11,13 @@ function Bird() {
         fill(255);
         //ellipse(this.x, this.y, 2 * this.r, 2 * this.r);
         imageMode(CENTER);
-        if (userimg) lol = userimg;
+        if (userimg) picture = userimg;
+        else if (kid == "vaibhav") picture = s[2]
+        else if (kid == "ahana") picture = s[4]
+        else if (kid == "harman") picture = s[5]
         else
-            switch (pic) {
-                case 0:
-                    lol = s1;
-                    break;
-                case 1:
-                    lol = s2;
-                    break;
-                case 2:
-                    lol = s3;
-                    break;
-                case 3:
-                    lol = toruss;
-            }
-        image(lol, this.x, this.y, 2 * this.r, 2 * this.r);
+            picture = s[pic_num]
+        image(picture, this.x, this.y, 2 * this.r, 2 * this.r);
     }
 
     this.up = function () {
